@@ -146,6 +146,51 @@ body{background:#f5f7fb;color:var(--text)}
 }
 @media(max-width:390px){.ticket-mobile-summary{gap:6px}.ticket-summary-chip{padding:9px}.ticket-summary-chip b{font-size:18px}.tmc-meta{grid-template-columns:1fr 1fr}.tmc-actions{grid-template-columns:1fr 44px}.ticket-mobile-card{padding:13px}}
 
+
+/* ===== Geração de OS - Mobile First ===== */
+.os-form-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:2px}
+#osModal .textarea{min-height:92px;resize:vertical}
+@media(max-width:720px){
+  #osModal{padding:0;align-items:stretch;justify-content:stretch;background:rgba(15,23,42,.28)}
+  #osModal .modal{
+    width:100%;max-width:none;height:100vh;height:100dvh;max-height:100vh;max-height:100dvh;
+    border-radius:0;border:0;display:flex;flex-direction:column;overflow:hidden;box-shadow:none
+  }
+  #osModal .modal-head{
+    flex:0 0 auto;padding:calc(12px + env(safe-area-inset-top)) 14px 12px;
+    min-height:62px;box-shadow:0 1px 0 #e2e8f0;z-index:5
+  }
+  #osModal .modal-head h3{font-size:17px;line-height:1.25;padding-right:8px}
+  #osModal .close{width:40px;height:40px;border-radius:12px;font-size:22px;flex:0 0 40px}
+  #osModal .modal-body{
+    flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;
+    padding:14px 14px calc(16px + env(safe-area-inset-bottom));background:#f8fafc
+  }
+  #osModal #osForm{display:grid;grid-template-columns:1fr;gap:12px}
+  #osModal #osForm .field,#osModal #osForm .full{grid-column:1!important;min-width:0}
+  #osModal #osForm .field{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:11px}
+  #osModal #osForm .field label{display:block;margin-bottom:7px;font-size:12px;font-weight:800;color:#475569}
+  #osModal .input,#osModal .select,#osModal .textarea{
+    width:100%;max-width:100%;font-size:16px!important;border-radius:11px;min-height:48px;
+    padding:11px 12px;background:#fff
+  }
+  #osModal .textarea{min-height:110px;line-height:1.45}
+  #osModal input[type="datetime-local"]{min-width:0}
+  #osModal .os-form-actions{
+    position:sticky;bottom:calc(-14px - env(safe-area-inset-bottom));z-index:6;
+    display:grid;grid-template-columns:1fr 1.35fr;gap:10px;margin:4px -14px -14px;
+    padding:12px 14px calc(12px + env(safe-area-inset-bottom));
+    background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-top:1px solid #e2e8f0;
+    box-shadow:0 -10px 28px rgba(15,23,42,.08)
+  }
+  #osModal .os-form-actions .btn{width:100%;min-height:50px;font-size:15px;border-radius:12px}
+}
+@media(max-width:390px){
+  #osModal .modal-body{padding-left:10px;padding-right:10px}
+  #osModal .os-form-actions{margin-left:-10px;margin-right:-10px;padding-left:10px;padding-right:10px}
+  #osModal #osForm .field{padding:10px}
+}
+
 </style>
 
 <style id="ig-login-styles">
@@ -294,7 +339,7 @@ body{background:#f5f7fb;color:var(--text)}
 
 <div class="modal-backdrop" id="detailModal"><div class="modal"><div class="modal-head"><h3>Detalhes do atendimento</h3><button class="close" onclick="closeModal('detailModal')">×</button></div><div class="modal-body" id="detailContent"></div></div></div>
 
-<div class="modal-backdrop" id="osModal"><div class="modal"><div class="modal-head"><h3>Gerar / editar Ordem de Serviço</h3><button class="close" onclick="closeModal('osModal')">×</button></div><div class="modal-body"><form class="form-grid" id="osForm" onsubmit="saveOS(event)"><input type="hidden" id="osId"><div class="field"><label>Chamado vinculado</label><select class="select" id="osTicket" required></select></div><div class="field"><label>Técnico</label><select class="select" id="osTech"></select></div><div class="field"><label>Data do atendimento</label><input class="input" type="datetime-local" id="osDate" required></div><div class="field"><label>Tipo</label><select class="select" id="osType"><option>Remoto</option><option>Visita técnica</option><option>Preventiva</option><option>Corretiva</option></select></div><div class="field full"><label>Serviços previstos</label><textarea class="textarea" id="osServices"></textarea></div><div class="field full"><label>Materiais / peças</label><textarea class="textarea" id="osMaterials"></textarea></div><div class="field full"><label>Laudo / solução</label><textarea class="textarea" id="osReport"></textarea></div><div class="field"><label>Status da OS</label><select class="select" id="osStatus"><option>Aberta</option><option>Agendada</option><option>Em execução</option><option>Aguardando peça</option><option>Concluída</option></select></div><div class="field"><label>Assinatura / aceite</label><input class="input" id="osSign" placeholder="Nome do responsável"></div><div class="full" style="display:flex;justify-content:flex-end;gap:10px"><button type="button" class="btn" onclick="closeModal('osModal')">Cancelar</button><button class="btn primary">Salvar OS</button></div></form></div></div></div>
+<div class="modal-backdrop" id="osModal"><div class="modal"><div class="modal-head"><h3>Gerar / editar Ordem de Serviço</h3><button class="close" onclick="closeModal('osModal')">×</button></div><div class="modal-body"><form class="form-grid" id="osForm" onsubmit="saveOS(event)"><input type="hidden" id="osId"><div class="field"><label>Chamado vinculado</label><select class="select" id="osTicket" required></select></div><div class="field"><label>Técnico</label><select class="select" id="osTech"></select></div><div class="field"><label>Data do atendimento</label><input class="input" type="datetime-local" id="osDate" required></div><div class="field"><label>Tipo</label><select class="select" id="osType"><option>Remoto</option><option>Visita técnica</option><option>Preventiva</option><option>Corretiva</option></select></div><div class="field full"><label>Serviços previstos</label><textarea class="textarea" id="osServices"></textarea></div><div class="field full"><label>Materiais / peças</label><textarea class="textarea" id="osMaterials"></textarea></div><div class="field full"><label>Laudo / solução</label><textarea class="textarea" id="osReport"></textarea></div><div class="field"><label>Status da OS</label><select class="select" id="osStatus"><option>Aberta</option><option>Agendada</option><option>Em execução</option><option>Aguardando peça</option><option>Concluída</option></select></div><div class="field"><label>Assinatura / aceite</label><input class="input" id="osSign" placeholder="Nome do responsável"></div><div class="full os-form-actions"><button type="button" class="btn os-cancel" onclick="closeModal('osModal')">Cancelar</button><button class="btn primary os-save">Salvar OS</button></div></form></div></div></div>
 
 <div class="modal-backdrop" id="alert48Modal"><div class="modal alert48-modal"><div class="modal-head alert48-head"><div class="alert48-title"><div class="alert48-icon">⚠</div><div><h3 style="margin:0">Chamado sem solução há mais de 48 horas</h3><div class="muted" style="font-size:12px;margin-top:3px">Este alerta será repetido a cada 30 minutos enquanto o chamado permanecer sem solução.</div></div></div><button class="close" onclick="closeModal('alert48Modal')">×</button></div><div class="modal-body"><div id="alert48Content"></div><div class="alert48-actions"><button class="btn" onclick="closeModal('alert48Modal')">Fechar</button><button class="btn danger" id="alert48OpenBtn">Abrir chamado</button></div></div></div></div>
 
