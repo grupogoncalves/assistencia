@@ -99,6 +99,53 @@ body{background:#f5f7fb;color:var(--text)}
 .activity-content{min-width:0}.activity-title{font-size:13px;font-weight:800;color:#0f172a;line-height:1.35;overflow-wrap:break-word}.activity-ref{display:inline-flex;align-items:center;margin-right:6px;color:#15803d;font-weight:900}.activity-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:5px;color:#64748b;font-size:11px}.activity-time{display:inline-flex;align-items:center;gap:4px}.activity-type{padding:3px 7px;border-radius:999px;background:#f1f5f9;color:#475569;font-weight:700}.activity-open{border:1px solid #bbf7d0;background:#f0fdf4;color:#166534;border-radius:10px;padding:7px 9px;font-size:11px;font-weight:800;white-space:nowrap;cursor:pointer}.activity-open:hover{background:#dcfce7}
 .activity-empty{padding:30px 12px;text-align:center;color:#64748b;background:#f8fafc;border:1px dashed #cbd5e1;border-radius:14px}
 @media(max-width:760px){.activity-item{grid-template-columns:38px minmax(0,1fr);gap:10px}.activity-icon{width:38px;height:38px}.activity-open{grid-column:2;justify-self:start}.timeline.activity-modern{max-height:none}}
+
+/* ===== CHAMADOS MOBILE-FIRST ===== */
+.ticket-mobile-list{display:none}
+.ticket-mobile-summary{display:none}
+.ticket-filter-toggle{display:none}
+.ticket-count-label{font-size:12px;color:var(--muted);font-weight:700;align-self:center}
+.ticket-mobile-card{background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:14px;box-shadow:0 4px 14px rgba(15,23,42,.05);position:relative;overflow:hidden}
+.ticket-mobile-card.late{border-color:#fecaca;background:linear-gradient(180deg,#fff,#fffafa)}
+.ticket-mobile-card.late:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:#dc2626}
+.tmc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:9px}
+.tmc-id{font-size:12px;font-weight:900;color:#15803d;letter-spacing:.02em}
+.tmc-date{font-size:11px;color:#94a3b8;margin-top:3px}
+.tmc-title{font-size:15px;font-weight:800;color:#172033;line-height:1.3;margin:4px 0 10px}
+.tmc-client{font-size:14px;font-weight:800;color:#1e293b}.tmc-plant{font-size:12px;color:#64748b;margin-top:2px}
+.tmc-meta{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.tmc-meta-box{background:#f8fafc;border-radius:11px;padding:9px 10px;min-width:0}
+.tmc-meta-box span{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:#94a3b8;font-weight:800;margin-bottom:3px}
+.tmc-meta-box b{display:block;font-size:12px;color:#334155;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tmc-sla{margin:10px 0 12px}.tmc-sla-head{display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:11px;color:#64748b;margin-bottom:6px}.tmc-sla-head .late-text{color:#dc2626;font-weight:800}
+.tmc-actions{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:12px}.tmc-actions .btn{min-height:44px;font-weight:800}.tmc-actions .btn.icon-only{width:46px;padding:0;display:grid;place-items:center;font-size:16px}
+.ticket-filter-panel{display:contents}
+.ticket-summary-chip{background:#fff;border:1px solid #e2e8f0;border-radius:13px;padding:10px 12px;min-width:0;box-shadow:0 2px 8px rgba(15,23,42,.03)}
+.ticket-summary-chip span{display:block;font-size:10px;color:#94a3b8;text-transform:uppercase;font-weight:800;letter-spacing:.04em}.ticket-summary-chip b{display:block;font-size:20px;color:#172033;margin-top:2px}
+
+@media(max-width:720px){
+  #view-chamados>.card.section{padding:0;background:transparent;border:0;box-shadow:none}
+  #view-chamados .table-wrap{display:none}
+  .ticket-mobile-list{display:flex;flex-direction:column;gap:10px}
+  .ticket-mobile-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
+  .ticket-filter-toggle{display:inline-flex;align-items:center;justify-content:center;gap:6px}
+  #view-chamados .toolbar{display:grid;grid-template-columns:1fr auto;gap:8px;margin-bottom:10px;position:relative}
+  #view-chamados .toolbar>#searchTicket{grid-column:1/-1;width:100%;min-width:0;height:48px;font-size:16px;border-radius:13px;background:#fff}
+  #view-chamados .ticket-filter-panel{display:none;grid-column:1/-1;grid-template-columns:1fr 1fr;gap:8px;background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:10px;box-shadow:0 8px 20px rgba(15,23,42,.06)}
+  #view-chamados .ticket-filter-panel.open{display:grid}
+  #view-chamados .ticket-filter-panel .select{width:100%;min-width:0;height:44px;background:#fff}
+  #view-chamados .ticket-filter-panel .filter-clear{grid-column:1/-1}
+  #view-chamados .toolbar>.btn.primary{min-height:46px;padding:0 14px;white-space:nowrap}
+  .ticket-count-label{justify-self:start;padding-left:2px}
+  .topbar{margin-bottom:14px;gap:8px}.title p{display:none}.title h2{font-size:20px}
+  .top-actions{display:none}
+  .main{padding:12px;padding-bottom:max(18px,env(safe-area-inset-bottom))}
+  .badge{font-size:10px;padding:4px 7px}
+  .modal-backdrop{padding:0;align-items:flex-end}.modal{width:100%;max-height:94dvh;border-radius:20px 20px 0 0;border-left:0;border-right:0;border-bottom:0}.modal-body{padding:14px}.modal-head{padding:14px 15px}.modal-head h3{font-size:16px}
+  .os-detail{gap:10px}.info-box{padding:12px}.info-list{grid-template-columns:100px 1fr;gap:7px;font-size:12px}
+}
+@media(max-width:390px){.ticket-mobile-summary{gap:6px}.ticket-summary-chip{padding:9px}.ticket-summary-chip b{font-size:18px}.tmc-meta{grid-template-columns:1fr 1fr}.tmc-actions{grid-template-columns:1fr 44px}.ticket-mobile-card{padding:13px}}
+
 </style>
 
 <style id="ig-login-styles">
@@ -175,7 +222,19 @@ body{background:#f5f7fb;color:var(--text)}
 
     <section id="view-chamados" class="view hidden">
       <div class="card section">
-        <div class="toolbar"><input class="input" id="searchTicket" placeholder="Buscar protocolo, cliente, usina..." oninput="renderTickets()"><select class="select" id="filterStatus" onchange="renderTickets()"><option value="">Todos os status</option><option>Novo</option><option>Em análise</option><option>Em atendimento</option><option>Aguardando cliente</option><option>Concluído</option></select><select class="select" id="filterPriority" onchange="renderTickets()"><option value="">Todas prioridades</option><option>Crítica</option><option>Alta</option><option>Média</option><option>Baixa</option></select><button class="btn primary" onclick="openNewTicket()">+ Novo chamado</button></div>
+        <div class="ticket-mobile-summary" id="ticketMobileSummary"></div>
+        <div class="toolbar">
+          <input class="input" id="searchTicket" placeholder="Buscar chamado, cliente ou usina..." oninput="renderTickets()">
+          <button class="btn ticket-filter-toggle" type="button" onclick="toggleTicketFilters()">☷ Filtros</button>
+          <div class="ticket-filter-panel" id="ticketFilterPanel">
+            <select class="select" id="filterStatus" onchange="renderTickets()"><option value="">Todos os status</option><option>Novo</option><option>Em análise</option><option>Em atendimento</option><option>Aguardando cliente</option><option>Concluído</option></select>
+            <select class="select" id="filterPriority" onchange="renderTickets()"><option value="">Todas prioridades</option><option>Crítica</option><option>Alta</option><option>Média</option><option>Baixa</option></select>
+            <button class="btn filter-clear" type="button" onclick="resetTicketFilters()">Limpar filtros</button>
+          </div>
+          <button class="btn primary" onclick="openNewTicket()">+ Novo</button>
+          <div class="ticket-count-label" id="ticketCountLabel"></div>
+        </div>
+        <div class="ticket-mobile-list" id="ticketMobileList"></div>
         <div class="table-wrap"><table class="table"><thead><tr><th>Protocolo</th><th>Cliente / Usina</th><th>Categoria</th><th>Prioridade</th><th>Status</th><th>Técnico</th><th>SLA</th><th>Ações</th></tr></thead><tbody id="ticketTableBody"></tbody></table></div>
       </div>
     </section>
@@ -292,7 +351,18 @@ $('todayDate').textContent=new Intl.DateTimeFormat('pt-BR',{dateStyle:'full'}).f
 let crit=[...open].sort((a,b)=>((b.priority==='Crítica')-(a.priority==='Crítica'))||new Date(a.created)-new Date(b.created)).slice(0,5);$('criticalList').innerHTML=crit.map(t=>{let s=ticketSLA(t);return `<div class="info-box" style="margin-bottom:10px;cursor:pointer" onclick="openDetail('${t.id}')"><div style="display:flex;justify-content:space-between;gap:10px"><b>${t.id} · ${t.client}</b>${priorityBadge(t.priority)}</div><div class="muted" style="font-size:12px;margin:7px 0">${t.title}</div><div class="sla"><span style="width:${s.pct}%"></span></div><small style="color:${s.late?'#ff7e87':'#8fa1b5'}">${s.label}</small></div>`}).join('');
 $('teamLoad').innerHTML=db.techs.map(tech=>{let n=open.filter(t=>t.tech===tech.id).length;return `<div class="bar-row"><span>${tech.name.split(' ')[0]}</span><div class="bar"><span style="width:${Math.min(100,n*25)}%"></span></div><b>${n}</b></div>`}).join('')}
 function varColor(n){return getComputedStyle(document.documentElement).getPropertyValue('--'+n)}
-function renderTickets(){let q=($('searchTicket')?.value||'').toLowerCase(),st=$('filterStatus')?.value||'',pr=$('filterPriority')?.value||'';let rows=db.tickets.filter(t=>(!q||[t.id,t.client,t.plant,t.title,t.city].join(' ').toLowerCase().includes(q))&&(!st||t.status===st)&&(!pr||t.priority===pr));let body=$('ticketTableBody');if(!body)return;body.innerHTML=rows.map(t=>{let tech=db.techs.find(x=>x.id===t.tech)?.name||'Não atribuído',sla=ticketSLA(t);return `<tr><td><b>${t.id}</b><br><span class="muted">${fmtDate(t.created)}</span></td><td><b>${t.client}</b><br><span class="muted">${t.plant}</span></td><td>${t.category}<br><span class="muted">${t.equipment||''}</span></td><td>${priorityBadge(t.priority)}</td><td>${statusBadge(t.status)}</td><td>${tech}</td><td style="min-width:130px"><div class="sla"><span style="width:${sla.pct}%"></span></div><small style="color:${sla.late?'#ff7e87':'#8fa1b5'}">${sla.label}</small></td><td><button class="btn" onclick="openDetail('${t.id}')">Abrir</button> <button class="btn" onclick="editTicket('${t.id}')">Editar</button></td></tr>`}).join('')||`<tr><td colspan="8"><div class="empty">Nenhum chamado encontrado.</div></td></tr>`}
+function toggleTicketFilters(){document.getElementById('ticketFilterPanel')?.classList.toggle('open')}
+function resetTicketFilters(){if($('filterStatus'))$('filterStatus').value='';if($('filterPriority'))$('filterPriority').value='';renderTickets()}
+function renderTickets(){
+  let q=($('searchTicket')?.value||'').toLowerCase(),st=$('filterStatus')?.value||'',pr=$('filterPriority')?.value||'';
+  let rows=db.tickets.filter(t=>(!q||[t.id,t.client,t.plant,t.title,t.city,t.category,t.equipment].join(' ').toLowerCase().includes(q))&&(!st||t.status===st)&&(!pr||t.priority===pr));
+  let body=$('ticketTableBody');
+  if(body)body.innerHTML=rows.map(t=>{let tech=db.techs.find(x=>x.id===t.tech)?.name||'Não atribuído',sla=ticketSLA(t);return `<tr><td><b>${t.id}</b><br><span class="muted">${fmtDate(t.created)}</span></td><td><b>${t.client}</b><br><span class="muted">${t.plant}</span></td><td>${t.category}<br><span class="muted">${t.equipment||''}</span></td><td>${priorityBadge(t.priority)}</td><td>${statusBadge(t.status)}</td><td>${tech}</td><td style="min-width:130px"><div class="sla"><span style="width:${sla.pct}%"></span></div><small style="color:${sla.late?'#dc2626':'#64748b'}">${sla.label}</small></td><td><button class="btn" onclick="openDetail('${t.id}')">Abrir</button> <button class="btn" onclick="editTicket('${t.id}')">Editar</button></td></tr>`}).join('')||`<tr><td colspan="8"><div class="empty">Nenhum chamado encontrado.</div></td></tr>`;
+  const count=$('ticketCountLabel');if(count)count.textContent=`${rows.length} ${rows.length===1?'chamado':'chamados'}`;
+  const summary=$('ticketMobileSummary');if(summary){const open=db.tickets.filter(t=>t.status!=='Concluído').length,critical=db.tickets.filter(t=>t.status!=='Concluído'&&t.priority==='Crítica').length,late=db.tickets.filter(t=>t.status!=='Concluído'&&ticketSLA(t).late).length;summary.innerHTML=`<div class="ticket-summary-chip"><span>Em aberto</span><b>${open}</b></div><div class="ticket-summary-chip"><span>Críticos</span><b>${critical}</b></div><div class="ticket-summary-chip"><span>SLA vencido</span><b>${late}</b></div>`}
+  const mobile=$('ticketMobileList');if(!mobile)return;
+  mobile.innerHTML=rows.map(t=>{const tech=db.techs.find(x=>x.id===t.tech)?.name||'Sem técnico',sla=ticketSLA(t),late=sla.late&&t.status!=='Concluído';return `<article class="ticket-mobile-card ${late?'late':''}" onclick="openDetail('${t.id}')"><div class="tmc-top"><div><div class="tmc-id">${t.id}</div><div class="tmc-date">${fmtDate(t.created)}</div></div><div>${priorityBadge(t.priority)}</div></div><div class="tmc-title">${t.title}</div><div class="tmc-client">${t.client}</div><div class="tmc-plant">${t.plant||'-'}${t.city?' · '+t.city:''}</div><div class="tmc-meta"><div class="tmc-meta-box"><span>Status</span><b>${t.status}</b></div><div class="tmc-meta-box"><span>Técnico</span><b>${tech}</b></div><div class="tmc-meta-box"><span>Categoria</span><b>${t.category}</b></div><div class="tmc-meta-box"><span>Equipamento</span><b>${t.equipment||'-'}</b></div></div><div class="tmc-sla"><div class="tmc-sla-head"><span>SLA</span><span class="${late?'late-text':''}">${sla.label}</span></div><div class="sla"><span style="width:${sla.pct}%"></span></div></div><div class="tmc-actions"><button class="btn primary" type="button" onclick="event.stopPropagation();openDetail('${t.id}')">Abrir atendimento</button><button class="btn icon-only" type="button" title="Editar" onclick="event.stopPropagation();editTicket('${t.id}')">✎</button></div></article>`}).join('')||`<div class="empty" style="background:#fff;border:1px solid #e2e8f0;border-radius:16px">Nenhum chamado encontrado.</div>`;
+}
 function renderKanban(){let cols=[['Novo','Novo'],['Em análise','Em análise'],['Em atendimento','Em atendimento'],['Aguardando cliente','Aguardando cliente']];$('kanbanBoard').innerHTML=cols.map(([key,title])=>{let arr=db.tickets.filter(t=>t.status===key);return `<div class="kan-col"><div class="kan-title"><span>${title}</span><span class="kan-count">${arr.length}</span></div>${arr.map(t=>`<div class="ticket-card" onclick="openDetail('${t.id}')"><div class="ticket-id">${t.id} · ${t.client}</div><div class="ticket-title">${t.title}</div><div class="ticket-meta"><span>${t.category}</span><span>${fmtDate(t.updated)}</span></div><div class="ticket-bottom">${priorityBadge(t.priority)}<span class="muted">${db.techs.find(x=>x.id===t.tech)?.name?.split(' ')[0]||'Sem técnico'}</span></div></div>`).join('')||'<div class="empty">Sem chamados</div>'}</div>`}).join('')}
 function renderOS(){let b=$('osTableBody');if(!b)return;b.innerHTML=db.orders.map(o=>{let t=db.tickets.find(x=>x.id===o.ticketId),tech=db.techs.find(x=>x.id===o.tech)?.name||'-';return `<tr><td><b>${o.id}</b></td><td>${o.ticketId}</td><td>${t?.client||'-'}</td><td>${tech}</td><td>${fmtDate(o.date)}</td><td>${statusBadge(o.status)}</td><td>${o.report?'<span class="badge b-done">Preenchido</span>':'<span class="muted">Pendente</span>'}</td><td><div style="display:flex;gap:6px;flex-wrap:wrap"><button class="btn" onclick="editOS('${o.id}')">Editar</button><button class="btn success" onclick="printOS('${o.id}')">Visualizar / Imprimir</button><button class="btn primary" onclick="openFieldService('${o.id}')">📍 Campo</button></div></td></tr>`}).join('')||`<tr><td colspan="8"><div class="empty">Nenhuma OS cadastrada.</div></td></tr>`}
 function renderClients(){let b=$('clientTableBody');if(!b)return;b.innerHTML=db.clients.map(c=>`<tr><td><b>${c.name}</b></td><td>${c.plant}</td><td>${c.city||'-'}</td><td>${c.power?c.power+' kWp':'-'}</td><td>${c.inverter||'-'}</td><td>${fmtDate(c.lastEvent)}</td><td><button class="btn" onclick="prefillTicketFromClient('${c.id}')">Abrir chamado</button></td></tr>`).join('')}
