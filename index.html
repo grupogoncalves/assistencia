@@ -567,49 +567,6 @@ function printOS(id,autoPrint=false){
   <div class="footer"><span>${escHtml(o.id)} · ${escHtml(t.client||'')}</span><span>Documento gerado pelo SolarCare</span></div>
   <div class="no-print" style="position:fixed;right:22px;bottom:22px"><button onclick="window.print()" style="border:0;background:#16a34a;color:white;padding:12px 18px;border-radius:10px;font-weight:bold;cursor:pointer">Imprimir / Salvar PDF</button></div>
   </div><script>${autoPrint?"setTimeout(()=>window.print(),450);":""}<\/script>
-<script id="pwa-install-script">
-(function(){
-  let deferredPrompt=null;
-  const box=document.getElementById('pwaInstallBox');
-  const installBtn=document.getElementById('pwaInstallBtn');
-  const laterBtn=document.getElementById('pwaInstallLater');
-  const isStandalone=window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone===true;
-  const dismissedKey='ig_pwa_install_dismissed';
-  function showBox(){
-    if(isStandalone || sessionStorage.getItem(dismissedKey)==='1') return;
-    box?.classList.add('show'); box?.setAttribute('aria-hidden','false');
-  }
-  function hideBox(){box?.classList.remove('show');box?.setAttribute('aria-hidden','true');}
-  window.addEventListener('beforeinstallprompt',function(e){
-    e.preventDefault();
-    deferredPrompt=e;
-    setTimeout(showBox,900);
-  });
-  installBtn?.addEventListener('click',async function(){
-    if(deferredPrompt){
-      deferredPrompt.prompt();
-      try{await deferredPrompt.userChoice;}catch(e){}
-      deferredPrompt=null;hideBox();
-      return;
-    }
-    const isiOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
-    if(isiOS){alert('No iPhone: toque em Compartilhar e depois em “Adicionar à Tela de Início”.');}
-    else{alert('No Chrome, abra o menu ⋮ e escolha “Instalar app” ou “Adicionar à tela inicial”.');}
-  });
-  laterBtn?.addEventListener('click',function(){sessionStorage.setItem(dismissedKey,'1');hideBox();});
-  window.addEventListener('appinstalled',function(){deferredPrompt=null;hideBox();});
-  if('serviceWorker' in navigator){
-    window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(console.warn));
-  }
-  // Fallback: se o Chrome não disparar beforeinstallprompt, mostra orientação após alguns segundos.
-  setTimeout(function(){
-    if(!isStandalone && !deferredPrompt && !sessionStorage.getItem(dismissedKey)){
-      const isChrome=/Chrome|CriOS/i.test(navigator.userAgent) && !/Edg|OPR/i.test(navigator.userAgent);
-      if(isChrome) showBox();
-    }
-  },3500);
-})();
-</script>
 </body></html>`;
   w.document.open();w.document.write(html);w.document.close();
 }
@@ -666,6 +623,48 @@ setTimeout(openTicketFromWhatsAppParams,120);
 cleanAlert48Log();
 setTimeout(check48HourAlerts,700);
 setInterval(check48HourAlerts,60*1000);
+</script>
+
+<script id="pwa-install-script">
+(function(){
+  let deferredPrompt=null;
+  const box=document.getElementById('pwaInstallBox');
+  const installBtn=document.getElementById('pwaInstallBtn');
+  const laterBtn=document.getElementById('pwaInstallLater');
+  const isStandalone=window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone===true;
+  const dismissedKey='ig_pwa_install_dismissed';
+  function showBox(){
+    if(isStandalone || sessionStorage.getItem(dismissedKey)==='1') return;
+    if(box){box.classList.add('show');box.setAttribute('aria-hidden','false');}
+  }
+  function hideBox(){if(box){box.classList.remove('show');box.setAttribute('aria-hidden','true');}}
+  window.addEventListener('beforeinstallprompt',function(e){
+    e.preventDefault();
+    deferredPrompt=e;
+    setTimeout(showBox,900);
+  });
+  installBtn?.addEventListener('click',async function(){
+    if(deferredPrompt){
+      deferredPrompt.prompt();
+      try{await deferredPrompt.userChoice;}catch(e){}
+      deferredPrompt=null;hideBox();return;
+    }
+    const isiOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
+    if(isiOS){alert('No iPhone: toque em Compartilhar e depois em “Adicionar à Tela de Início”.');}
+    else{alert('No Chrome, abra o menu e escolha “Instalar app” ou “Adicionar à tela inicial”.');}
+  });
+  laterBtn?.addEventListener('click',function(){sessionStorage.setItem(dismissedKey,'1');hideBox();});
+  window.addEventListener('appinstalled',function(){deferredPrompt=null;hideBox();});
+  if('serviceWorker' in navigator){
+    window.addEventListener('load',function(){navigator.serviceWorker.register('./service-worker.js').catch(function(err){console.warn('SW:',err);});});
+  }
+  setTimeout(function(){
+    if(!isStandalone && !deferredPrompt && !sessionStorage.getItem(dismissedKey)){
+      const isChrome=/Chrome|CriOS/i.test(navigator.userAgent) && !/Edg|OPR/i.test(navigator.userAgent);
+      if(isChrome) showBox();
+    }
+  },3500);
+})();
 </script>
 
 <script id="ig-login-script">
