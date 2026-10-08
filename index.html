@@ -220,6 +220,112 @@ body{background:#f5f7fb;color:var(--text)}
 <style id="pwa-install-style">
 .pwa-install-box{position:fixed;left:50%;bottom:max(16px,env(safe-area-inset-bottom));transform:translate(-50%,140%);width:min(94vw,520px);z-index:2147483647;background:#fff;border:1px solid #d9e7dc;border-radius:18px;box-shadow:0 20px 60px rgba(0,65,20,.22);padding:14px;display:grid;grid-template-columns:48px 1fr;gap:10px 12px;align-items:center;opacity:0;pointer-events:none;transition:.28s ease}.pwa-install-box.show{transform:translate(-50%,0);opacity:1;pointer-events:auto}.pwa-install-icon{width:48px;height:48px;border-radius:14px;background:#004d0c;color:#9bd24f;display:grid;place-items:center;font-size:27px}.pwa-install-copy{min-width:0}.pwa-install-copy strong{display:block;color:#10351f;font-size:15px;margin-bottom:3px}.pwa-install-copy span{display:block;color:#65756c;font-size:12px;line-height:1.35}.pwa-install-actions{grid-column:1/-1;display:flex;gap:8px;justify-content:flex-end}.pwa-install-actions button{border:0;border-radius:10px;min-height:40px;padding:0 15px;font-weight:800;cursor:pointer}.pwa-install-actions #pwaInstallLater{background:#eef4ef;color:#355043}.pwa-install-actions #pwaInstallBtn{background:#8cc63f;color:#103117}@media(max-width:520px){.pwa-install-box{bottom:max(10px,env(safe-area-inset-bottom));width:calc(100vw - 20px);border-radius:16px}.pwa-install-actions button{flex:1}}
 </style>
+
+<style id="global-mobile-safe">
+/* ===== Mobile safety layer: no page-level horizontal overflow ===== */
+html,body{max-width:100%;overflow-x:hidden}
+.app,.main,.view,.card,.section,.grid,.dashboard-grid,.toolbar,.topbar,.top-actions,.section-head,.modal,.modal-body,.form-grid,.field,.info-box,.os-detail,.kanban,.ticket-card,.wa-preview,.wa-number,.acceptance-box{min-width:0;max-width:100%}
+img,svg,canvas,video{max-width:100%;height:auto}
+input,select,textarea,button{max-width:100%;min-width:0}
+.input,.select,.textarea{width:100%;max-width:100%;min-width:0}
+.title,.title h2,.title p,.section-head h3,.modal-head h3,.ticket-title,.field-client,.field-address,.info-list b,.info-list span,.wa-number span,.alert48-title>div{min-width:0;overflow-wrap:anywhere;word-break:break-word}
+.table-wrap{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+@media(max-width:720px){
+  html,body{width:100%;max-width:100%;overflow-x:hidden}
+  body{font-size:14px}
+  .app,.main,.view{width:100%;max-width:100%}
+  .main{overflow-x:hidden}
+  .topbar{width:100%;display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:10px}
+  .topbar .mobile-toggle{grid-column:1}
+  .topbar .title{grid-column:2;min-width:0}
+  .topbar .title h2{font-size:19px;line-height:1.2;white-space:normal}
+  .top-actions{grid-column:1/-1;width:100%;display:none!important}
+  .grid,.dashboard-grid,.kpis,.form-grid,.os-detail{grid-template-columns:minmax(0,1fr)!important}
+  .kpis{gap:10px}
+  .card,.section{width:100%;max-width:100%;min-width:0}
+  .section{padding:14px}
+  .section-head{display:flex;flex-direction:column;align-items:stretch;gap:10px}
+  .section-head>.btn,.section-head>button{width:100%;min-height:46px}
+  .toolbar{width:100%;max-width:100%}
+  .toolbar>*{max-width:100%;min-width:0}
+  .toolbar .input,.toolbar .select{width:100%;min-width:0}
+
+  /* Generic mobile table -> stacked cards */
+  .table-wrap{overflow:visible;border:0;background:transparent}
+  .table.mobile-card-table{display:block!important;min-width:0!important;width:100%!important;border-collapse:separate}
+  .table.mobile-card-table thead{display:none}
+  .table.mobile-card-table tbody{display:grid;gap:10px;width:100%}
+  .table.mobile-card-table tr{display:block;width:100%;max-width:100%;background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:8px 10px;box-shadow:0 4px 14px rgba(15,23,42,.04);overflow:hidden}
+  .table.mobile-card-table td{display:grid;grid-template-columns:minmax(88px,34%) minmax(0,1fr);gap:8px;width:100%;max-width:100%;padding:8px 2px;border:0;border-bottom:1px solid #eef2f7;white-space:normal!important;overflow-wrap:anywhere;word-break:break-word;align-items:start}
+  .table.mobile-card-table td:last-child{border-bottom:0}
+  .table.mobile-card-table td::before{content:attr(data-label);font-size:10px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#64748b;padding-top:2px}
+  .table.mobile-card-table td[colspan]{display:block;text-align:center}
+  .table.mobile-card-table td[colspan]::before{display:none}
+  .table.mobile-card-table td[data-label="Ações"]{display:flex;flex-wrap:wrap;gap:7px;padding-top:10px}
+  .table.mobile-card-table td[data-label="Ações"]::before{width:100%;flex:0 0 100%}
+  .table.mobile-card-table td[data-label="Ações"] .btn{flex:1 1 120px;min-height:42px;padding:8px 10px}
+
+  /* Kanban: vertical on phones, no horizontal bleed */
+  .kanban{display:flex!important;flex-direction:column;gap:12px;overflow:visible!important;width:100%;padding-bottom:0}
+  .kan-col{width:100%;min-width:0;min-height:0}
+  .ticket-meta,.ticket-bottom{flex-wrap:wrap}
+
+  /* All modals become safe full-width sheets */
+  .modal-backdrop{width:100vw;max-width:100vw;overflow:hidden;padding:0;align-items:flex-end}
+  .modal{width:100%!important;max-width:100%!important;min-width:0!important;max-height:94dvh;overflow:hidden;border-radius:20px 20px 0 0}
+  .modal-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;width:100%;max-width:100%;padding:13px 14px}
+  .modal-head>div{min-width:0}
+  .modal-head h3{font-size:17px;line-height:1.22;white-space:normal;overflow-wrap:anywhere;margin:0}
+  .modal-head .close{width:42px;height:42px;min-width:42px;justify-self:end}
+  .modal-body{width:100%;max-width:100%;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding:13px 12px calc(18px + env(safe-area-inset-bottom))}
+  .modal-body form,.modal-body .form-grid{width:100%;max-width:100%}
+  .form-grid>.field,.form-grid>.full{grid-column:1!important;min-width:0;width:100%}
+  .field label{overflow-wrap:anywhere}
+  .input,.select,.textarea,input[type="datetime-local"],input[type="date"],input[type="time"],input[type="number"],input[type="text"],input[type="email"],input[type="tel"]{width:100%!important;max-width:100%!important;min-width:0!important;font-size:16px!important}
+  select{white-space:nowrap;text-overflow:ellipsis;overflow:hidden}
+  textarea{white-space:pre-wrap;overflow-wrap:anywhere}
+
+  /* Inline action rows */
+  .modal-body [style*="display:flex"],.card [style*="display:flex"]{max-width:100%}
+  .finalize-actions,.alert48-actions,.signature-tools{display:grid!important;grid-template-columns:1fr;gap:8px;width:100%}
+  .finalize-actions .btn,.alert48-actions .btn,.signature-tools .btn{width:100%;min-height:46px}
+  .signature-canvas{width:100%!important;height:160px}
+  .signature-hint{display:block;line-height:1.4}
+  .accept-check{width:100%;min-width:0}
+  .accept-check span{overflow-wrap:anywhere}
+  .alert48-title{display:grid;grid-template-columns:42px minmax(0,1fr);align-items:start;gap:9px}
+  .alert48-badge{margin-left:0}
+  .wa-number{overflow-wrap:anywhere}
+  .wa-template-grid{grid-template-columns:1fr!important}
+
+  /* Reports/config buttons and metric grids */
+  #view-relatorios .grid,#view-config .grid,#reportStats .grid{grid-template-columns:1fr!important}
+  #view-relatorios .btn,#view-config .btn{max-width:100%}
+
+  /* Field service */
+  .field-mobile{width:100%;max-width:100%;overflow-x:hidden}
+  .field-card,.field-top{width:100%;max-width:100%;min-width:0}
+  .field-actions{grid-template-columns:1fr 1fr}
+  .field-action{min-width:0;white-space:normal;text-align:center;overflow-wrap:anywhere}
+  .field-timeline{width:100%;max-width:100%;overflow-x:auto;overscroll-behavior-x:contain}
+
+  /* PWA prompt */
+  .pwa-install-box{max-width:calc(100vw - 20px);overflow:hidden}
+}
+
+@media(max-width:390px){
+  .main{padding:10px}
+  .section{padding:12px}
+  .modal-head{padding:12px}
+  .modal-body{padding-left:10px;padding-right:10px}
+  .field-actions{grid-template-columns:1fr}
+  .field-action.main,.field-action.warn,.field-action.done{grid-column:auto}
+  .table.mobile-card-table td{grid-template-columns:82px minmax(0,1fr);font-size:12px}
+  .ticket-mobile-card,.info-box{padding:12px}
+}
+</style>
+
 </head>
 <body>
 <div id="pwaInstallBox" class="pwa-install-box" aria-hidden="true">
@@ -411,7 +517,16 @@ function renderActivityItem(a){
 function priorityBadge(p){return `<span class="badge ${p==='Crítica'?'b-critical':p==='Alta'?'b-progress':p==='Média'?'b-medium':'b-open'}">${p}</span>`}
 function statusBadge(s){let c=s==='Concluído'||s==='Concluída'?'b-done':s==='Em atendimento'||s==='Em execução'?'b-progress':s==='Novo'||s==='Aberta'?'b-open':'b-medium';return `<span class="badge ${c}">${s}</span>`}
 function ticketSLA(t){if(t.status==='Concluído')return {pct:100,label:'Concluído',late:false};let limit=db.config.sla[t.priority]||12,elapsed=hoursDiff(t.created),pct=Math.min(100,Math.round(elapsed/limit*100)),remain=limit-elapsed;return {pct,label:remain>=0?`${Math.max(0,remain).toFixed(1)}h restantes`:`${Math.abs(remain).toFixed(1)}h vencido`,late:remain<0}}
-function renderAll(){populateSelects();renderDashboard();renderTickets();renderKanban();renderOS();renderClients();renderTechs();renderReports();renderConfig();renderFieldSelector();if(selectedFieldOSId)renderFieldService();}
+function applyMobileTableLabels(){
+  document.querySelectorAll('.table').forEach(table=>{
+    table.classList.add('mobile-card-table');
+    const headers=[...table.querySelectorAll('thead th')].map(th=>(th.textContent||'').trim());
+    table.querySelectorAll('tbody tr').forEach(tr=>{
+      [...tr.children].forEach((td,i)=>{if(td.tagName==='TD'&&!td.hasAttribute('data-label'))td.setAttribute('data-label',headers[i]||'');});
+    });
+  });
+}
+function renderAll(){populateSelects();renderDashboard();renderTickets();renderKanban();renderOS();renderClients();renderTechs();renderReports();renderConfig();renderFieldSelector();if(selectedFieldOSId)renderFieldService();applyMobileTableLabels();}
 function renderConfig(){const sla=db.config?.sla||{};if($('slaCritical'))$('slaCritical').value=sla['Crítica']??2;if($('slaHigh'))$('slaHigh').value=sla['Alta']??4;if($('slaMedium'))$('slaMedium').value=sla['Média']??12;if($('slaLow'))$('slaLow').value=sla['Baixa']??24;}
 function populateSelects(){['tTech','osTech'].forEach(id=>{let el=$(id);if(!el)return;let val=el.value;el.innerHTML='<option value="">Não atribuído</option>'+db.techs.map(t=>`<option value="${t.id}">${t.name} - ${t.area}</option>`).join('');el.value=val});let ot=$('osTicket');if(ot){let val=ot.value;ot.innerHTML=db.tickets.map(t=>`<option value="${t.id}">${t.id} - ${t.client} - ${t.title}</option>`).join('');ot.value=val||selectedTicketId||db.tickets[0]?.id||''}}
 function renderDashboard(){let open=db.tickets.filter(t=>t.status!=='Concluído');let critical=open.filter(t=>t.priority==='Crítica');let inService=open.filter(t=>t.status==='Em atendimento');let concluded=db.tickets.filter(t=>t.status==='Concluído');let slaLate=open.filter(t=>ticketSLA(t).late);$('kpiContainer').innerHTML=[['Chamados abertos',open.length,varColor('blue'),'na operação'],['Críticos',critical.length,varColor('red'),'prioridade imediata'],['Em atendimento',inService.length,varColor('yellow'),'campo/remoto'],['Concluídos',concluded.length,varColor('green'),'histórico atual'],['SLA vencido',slaLate.length,varColor('red'),'exigem atenção']].map(x=>`<div class="card kpi"><div class="label"><span class="dot" style="background:${x[2]}"></span>${x[0]}</div><div class="value">${x[1]}</div><div class="delta">${x[3]}</div></div>`).join('');
