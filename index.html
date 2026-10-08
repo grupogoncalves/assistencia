@@ -371,6 +371,98 @@ input,select,textarea,button{max-width:100%;min-width:0}
 }
 </style>
 
+
+<style id="mobile-no-horizontal-scroll-v2">
+/* Correção final mobile: nenhuma aba exige rolagem horizontal */
+@media (max-width:720px){
+  html,body,#igApp,.app,.main,.view{width:100%;max-width:100%;overflow-x:hidden!important}
+  body{overscroll-behavior-x:none}
+  .main{padding:12px!important}
+  .view{min-width:0!important}
+  .card,.section,.info-box,.ticket-card,.ticket-mobile-card,.field-card,.field-top,
+  .activity-item,.acceptance-box,.wa-preview,.wa-number,.signature-wrap{width:100%;max-width:100%;min-width:0!important}
+
+  /* Nunca deixar wrappers de tabela deslizarem para o lado */
+  .table-wrap{width:100%!important;max-width:100%!important;overflow:visible!important;border:0!important}
+  .table{min-width:0!important;max-width:100%!important}
+  .table.mobile-card-table{width:100%!important;display:block!important}
+  .table.mobile-card-table tbody{width:100%!important;display:grid!important;grid-template-columns:minmax(0,1fr)!important}
+  .table.mobile-card-table tr{width:100%!important;max-width:100%!important;min-width:0!important}
+  .table.mobile-card-table td{min-width:0!important;max-width:100%!important;overflow-wrap:anywhere!important;word-break:break-word!important}
+
+  /* Barras, KPIs e dashboards */
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .dashboard-grid,.grid,.os-detail{grid-template-columns:minmax(0,1fr)!important;width:100%!important}
+  .bar-row{grid-template-columns:minmax(76px,100px) minmax(0,1fr) auto!important;gap:7px!important}
+  .bar-row>span{min-width:0;overflow-wrap:anywhere}
+
+  /* Toolbar e filtros */
+  .toolbar{display:grid!important;grid-template-columns:minmax(0,1fr)!important;width:100%!important;gap:8px!important}
+  .toolbar>*{width:100%!important;max-width:100%!important;min-width:0!important}
+  .ticket-filter-panel.open,.ticket-filter-panel{width:100%!important;max-width:100%!important}
+
+  /* Kanban sempre vertical no mobile */
+  .kanban{display:grid!important;grid-template-columns:minmax(0,1fr)!important;width:100%!important;max-width:100%!important;overflow:visible!important;padding:0!important}
+  .kan-col{width:100%!important;max-width:100%!important;min-width:0!important}
+
+  /* Etapas de progresso: vertical, sem apertar textos */
+  .progress-steps{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:7px!important;margin:12px 0!important}
+  .step{min-width:0!important;text-align:left!important;padding:9px 10px 9px 34px!important;border-radius:10px;background:#f8fafc;color:#64748b!important}
+  .step:before{display:none!important}
+  .step:after{left:13px!important;top:50%!important;transform:translateY(-50%)!important;width:11px!important;height:11px!important}
+  .step.active{background:#f0fdf4!important;color:#166534!important;font-weight:800}
+
+  /* Linha do tempo de campo: deixa de deslizar lateralmente */
+  .field-timeline{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;width:100%!important;max-width:100%!important;overflow:visible!important;padding:0!important}
+  .field-step{min-width:0!important;width:100%!important;overflow-wrap:anywhere!important}
+  .field-kv,.info-list{grid-template-columns:minmax(0,1fr)!important;gap:4px!important}
+  .field-kv span,.info-list span:nth-child(odd){margin-top:8px;font-size:10px;text-transform:uppercase;letter-spacing:.05em;font-weight:800}
+
+  /* Fotos e ações */
+  .field-photo-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .field-actions{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .field-action{min-width:0!important;white-space:normal!important;overflow-wrap:anywhere!important}
+
+  /* Cabeçalhos e linhas de informação quebram normalmente */
+  .topbar,.section-head,.tmc-top,.tmc-sla-head,.ticket-meta,.ticket-bottom,.activity-meta,
+  .field-statusline,.wa-number{min-width:0!important;max-width:100%!important;flex-wrap:wrap!important}
+  .tmc-meta{grid-template-columns:minmax(0,1fr)!important}
+  .tmc-meta-box b{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;overflow-wrap:anywhere!important}
+  .badge{max-width:100%;white-space:normal!important;text-align:center;overflow-wrap:anywhere}
+
+  /* Todos os modais em tela cheia e somente rolagem vertical */
+  .modal-backdrop{inset:0!important;width:100vw!important;max-width:100vw!important;height:100dvh!important;padding:0!important;overflow:hidden!important;align-items:flex-end!important}
+  .modal{width:100%!important;max-width:100%!important;min-width:0!important;height:min(100dvh,100%)!important;max-height:100dvh!important;border-radius:18px 18px 0 0!important;overflow:hidden!important}
+  .modal-head{width:100%!important;max-width:100%!important;min-width:0!important;flex:0 0 auto}
+  .modal-body{width:100%!important;max-width:100%!important;min-width:0!important;overflow-y:auto!important;overflow-x:hidden!important;-webkit-overflow-scrolling:touch!important}
+  .modal-body>*{max-width:100%!important;min-width:0!important}
+  .form-grid{display:grid!important;grid-template-columns:minmax(0,1fr)!important;width:100%!important;max-width:100%!important}
+  .form-grid>.field,.form-grid>.full{grid-column:1!important;width:100%!important;max-width:100%!important;min-width:0!important}
+  input,select,textarea,.input,.select,.textarea{width:100%!important;max-width:100%!important;min-width:0!important}
+
+  /* Ações de modal nunca saem da tela */
+  .finalize-actions,.alert48-actions,.signature-tools,.pwa-install-actions{display:grid!important;grid-template-columns:minmax(0,1fr)!important;width:100%!important;gap:8px!important}
+  .finalize-actions .btn,.alert48-actions .btn,.signature-tools .btn,.pwa-install-actions button{width:100%!important;max-width:100%!important}
+  .wa-template-grid{grid-template-columns:minmax(0,1fr)!important}
+  .wa-preview{white-space:pre-wrap!important;overflow-wrap:anywhere!important}
+  .signature-canvas{width:100%!important;max-width:100%!important}
+
+  /* PWA e login */
+  .pwa-install-box{left:10px!important;right:10px!important;transform:translateY(140%)!important;width:auto!important;max-width:none!important}
+  .pwa-install-box.show{transform:translateY(0)!important}
+}
+
+@media (max-width:480px){
+  .kpis{grid-template-columns:minmax(0,1fr)!important}
+  .field-timeline,.field-actions,.field-photo-grid{grid-template-columns:minmax(0,1fr)!important}
+  .main{padding:10px!important}
+  .section{padding:11px!important}
+  .modal-head{padding-left:12px!important;padding-right:12px!important}
+  .modal-body{padding-left:10px!important;padding-right:10px!important}
+  .table.mobile-card-table td{grid-template-columns:minmax(76px,32%) minmax(0,1fr)!important}
+}
+</style>
+
 </head>
 <body>
 <div id="pwaInstallBox" class="pwa-install-box" aria-hidden="true">
